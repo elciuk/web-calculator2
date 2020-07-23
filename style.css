@@ -1,1 +1,27 @@
-
+.container{
+    margin:auto;
+    padding-top:10%;
+    width:50%;
+    max-width:350px;
+    height:50%;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr) repeat(2, auto);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap:0.5em;
+}
+.display{
+    grid-column:1/6;
+    border-width: 1px;
+    border-style: solid;
+}
+#minus {
+    grid-column:4/5;
+    grid-row: 3/5;
+}
+#add{
+    grid-column:5/6;
+    grid-row: 3/5;
+}
+#sum{
+    grid-column:3/6;
+}
