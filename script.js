@@ -10,16 +10,20 @@ buttons.forEach((button)=>{
     button.addEventListener("click", (e)=>{
         if(storage[1] == ""){
             storage[0].push(button.textContent);
+            display.textContent = storage[0];
             if(storage[0][1] !== undefined){
                 storage[0][0] = storage[0][0]+storage[0][1];
                 storage[0].pop();
+                display.textContent = storage[0];
             }
             console.table(storage);
         } else {
             storage[2].push(button.textContent);
+            display.textContent = storage[2];
             if(storage[2][1] !== undefined){
                 storage[2][0] = storage[2][0]+storage[2][1];
                 storage[2].pop();
+                display.textContent = storage[2];
             }
             console.table(storage);
         }
@@ -28,8 +32,28 @@ buttons.forEach((button)=>{
 
 operators.forEach((operator)=>{
     operator.addEventListener("click", (e)=>{
-            storage[1] = e.srcElement.getAttribute("id");
-            console.table(storage);
+        if(storage[0] !==undefined && storage[1] !== undefined && storage[2] !== undefined){
+            switch(storage[1]){
+                case "add":
+                    display.textContent = parseInt(storage[0]) + parseInt(storage[2]);
+                    storage = [[display.textContent],[],[]];
+                    break;
+                case "minus":
+                    display.textContent = parseInt(storage[0]) - parseInt(storage[2]);
+                    storage = [[display.textContent],[],[]];
+                    break;
+                case "multiply":
+                    display.textContent = parseInt(storage[0]) * parseInt(storage[2]);
+                    storage = [[display.textContent],[],[]];
+                    break;
+                case "divide":
+                    display.textContent = parseInt(storage[0]) / parseInt(storage[2]);
+                    storage = [[display.textContent],[],[]];
+                    break;
+            }
+        storage[1] = e.srcElement.getAttribute("id");
+        console.table(storage);
+        };
     });
 });
 
@@ -55,6 +79,6 @@ sum.addEventListener("click", ()=>{
                 display.textContent = parseInt(storage[0]) / parseInt(storage[2]);
                 break;
         }
-        storage = [[],[],[]];
+        storage = [[display.textContent],[],[]];
     }
 });
